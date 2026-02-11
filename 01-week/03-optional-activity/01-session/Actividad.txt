@@ -1,0 +1,12 @@
+¿Qué criterios usaría para decidir cuándo migrar de archivos planos a un SGBD?
+ 1. Cuando hay datos duplicados. 
+ 2. Cuando aparecen errores e inconsistencias.
+ 3. Cuando varias personas deben trabajar al mismo tiempo.
+ 4. Cuando se necesita más seguridad.
+ 5. Cuando las consultas se vuelven más complejas.
+
+¿Qué tipo de SGBD (relacional o NoSQL) parece más adecuado para este contexto y por qué?
+ Un SGBD relacional, porque:
+  1. Maneja datos en tablas.
+  2. Permite relaciones claras (estudiante–materia–nota).
+  3. Garantiza integridad y consistencia.
