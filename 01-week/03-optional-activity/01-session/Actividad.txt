@@ -1,12 +1,28 @@
-¿Qué criterios usaría para decidir cuándo migrar de archivos planos a un SGBD?
- 1. Cuando hay datos duplicados. 
- 2. Cuando aparecen errores e inconsistencias.
- 3. Cuando varias personas deben trabajar al mismo tiempo.
- 4. Cuando se necesita más seguridad.
- 5. Cuando las consultas se vuelven más complejas.
+- ¿Qué criterios usaría para decidir cuándo migrar de archivos planos a un SGBD?
 
-¿Qué tipo de SGBD (relacional o NoSQL) parece más adecuado para este contexto y por qué?
- Un SGBD relacional, porque:
-  1. Maneja datos en tablas.
-  2. Permite relaciones claras (estudiante–materia–nota).
-  3. Garantiza integridad y consistencia.
+ 1. Cuando hay muchos datos duplicados.
+    Ejemplo: En varias hojas de Excel aparece el mismo estudiante escrito de formas distintas: Andrés Pérez, Andres Perez, A. Pérez.
+
+ 2. Cuando aparecen errores o inconsistencias.
+    Ejemplo: La nota final de un estudiante es 4.0 en una hoja, pero 3.5 en otra porque alguien no actualizó ambas.
+
+ 3. Cuando varias personas deben trabajar al mismo tiempo.
+    Ejemplo: Dos profesores abren el mismo archivo Excel y uno de ellos guarda la versión equivocada, sobrescribiendo datos importantes.
+
+ 4. Cuando se necesita más seguridad.
+    Ejemplo: Cualquier persona puede borrar una hoja accidentalmente o cambiar fórmulas sin ningún control.
+
+ 3. Cuando las consultas son cada vez más complejas.
+    Ejemplo: Si se quiere saber el listado de materias aprobadas por un estudiante en los últimos tres semestres, algo que Excel no puede hacer fácilmente.
+
+- ¿Qué tipo de SGBD (relacional o NoSQL) parece más adecuado para este contexto y por qué?
+  Un SGBD relacional, porque:
+
+ 1. Maneja datos en tablas.
+    Ejemplo: Se pueden crear tablas como Estudiante, Asignatura, Grupo y Matrícula, cada una con columnas bien definidas.
+
+ 2. Permite relaciones claras (estudiante–materia–nota).
+    Ejemplo: Un estudiante puede estar matriculado a varias asignaturas, y a través de la relación con la tabla Matrícula, se pueden guardar y consultar sus notas sin duplicar información.
+
+ 3. Garantiza integridad y consistencia.
+    Ejemplo: Si un grupo académico tiene un cupo máximo de 30 estudiantes, un SGBD relacional puede aplicar una restricción que impida agregar un estudiante número 31. De esta manera, se evita exceder el cupo y se asegura que la información sea coherente.

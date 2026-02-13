@@ -1,18 +1,46 @@
-¿Qué pasaría si no definimos correctamente las claves de cada entidad desde el inicio?
+- ¿Qué pasaría si no definimos correctamente las claves de cada entidad desde el inicio?
+
  1. Se pueden repetir registros sin darnos cuenta.
+    Ejemplo: Aparecen dos “Laura Gómez” en la tabla Estudiante porque no hay un código único que las diferencie.
+
  2. Las tablas no se podrán relacionar correctamente.
+    Ejemplo: Si un grupo no tiene un ID único, será difícil enlazarlo con la tabla Matrícula y no se sabrá en qué grupo está inscrito cada estudiante.
+
  3. Habrá errores al actualizar o borrar información.
+    Ejemplo: Si se quiere corregir el correo de un estudiante sin clave única, se podría actualizar el correo de la estudiante equivocada.
+
  4. La base de datos se vuelve más desordenada y difícil de manejar.
+    Ejemplo: Las notas pueden aparecer duplicadas o mezcladas entre estudiantes porque el sistema no sabe qué registro es el correcto.
 
-¿Qué ventajas aporta tener identificadas las entidades antes de pasar al diagrama ER formal?
+
+- ¿Qué ventajas aporta tener identificadas las entidades antes de pasar al diagrama ER formal?
+
  1. Ayuda a entender mejor qué cosas necesita el sistema.
- 2. Permite detectar fallas antes de dibujar el diagrama.
- 3. Facilita elegir los atributos importantes desde el principio.
- 4. Hace que crear el diagrama completo sea más fácil y rápido.
+    Ejemplo: Saber desde el inicio que existen Estudiante, Grupo y Asignatura evita crear entidades innecesarias.
 
-¿Qué información adicional consideras crítica en un sistema académico que aún no hemos modelado?
+ 2. Permite detectar fallas antes de dibujar el diagrama.
+    Ejemplo: Se puede dar cuenta de que “Notas” no debería ser una entidad independiente sino parte de Matrícula.
+
+ 3. Facilita elegir los atributos importantes desde el principio.
+    Ejemplo: Decidir que el Estudiante debe tener código, correo y documento evita olvidarlos luego en el diagrama.
+
+ 4. Hace que crear el diagrama completo sea más fácil y rápido.
+    Ejemplo: Si ya se saben las entidades y atributos, dibujar el ER es mucho mas fácil.
+
+
+- ¿Qué información adicional consideras crítica en un sistema académico que aún no hemos modelado?
+
  1. Docentes y sus datos.
+    Ejemplo: Código del docente, nombre, correo institucional; necesario para asignar responsables a los grupos.
+
  2. Periodo académico (año, semestre).
+    Ejemplo: 2026-1 o 2026-2, para saber en qué semestre se registra cada matrícula o nota.
+
  3. Programas o carreras donde estudian los alumnos.
+    Ejemplo: Ingeniería de Sistemas, Derecho, Contaduría; útil para saber qué plan de estudios aplica.
+
  4. Plan de estudios de cada programa.
+    Ejemplo: Qué asignaturas son obligatorias y en qué semestre se deben cursar.
+
  5. Historial académico con notas y materias ya cursadas.
+    Ejemplo: Saber que el estudiante aprobó Cálculo I en 2025-2 y que tiene pendiente Cálculo II.
