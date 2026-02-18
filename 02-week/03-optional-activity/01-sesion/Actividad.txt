@@ -1,0 +1,134 @@
+¿Qué otras entidades podrían ser necesarias en un sistema académico real?
+
+1. AULA
+¿Por qué sería necesaria?
+- Permite saber dónde se dicta cada clase y evitar conflictos de espacio.
+
+Atributos posibles:
+
+código_aula
+tipo (laboratorio, salón, auditorio)
+capacidad
+ubicación (bloque, piso)
+
+Ejemplo:
+
+Un docente dicta la asignatura cálculo 1 en el aula A-204.
+
+
+2. HORARIO
+Organiza cuándo se dictan las asignaturas y evita choques entre cursos, docentes o aulas.
+
+Atributos posibles:
+
+id_horario 
+día_semana
+hora_inicio
+hora_fin
+
+Ejemplo:
+
+La asignatura Programación I tiene horario Lunes 8:00–10:00 y Miércoles 8:00–10:00.
+
+Relaciones:
+
+ASIGNATURA tiene HORARIO
+HORARIO usa AULA
+HORARIO es impartido por DOCENTE
+
+
+3. PRERREQUISITO
+Regula qué asignaturas deben cursarse antes que otras.
+Atributos:
+
+id_prerrequisito
+tipo (obligatorio / recomendado)
+
+Ejemplo:
+
+Estructuras de Datos tiene como prerrequisito Programación I.
+
+
+4. EVALUACIÓN (calificaciones parciales)
+Permite registrar notas de parciales, talleres, proyectos, etc.
+Atributos:
+
+id_evaluación
+tipo (parcial, taller, proyecto)
+porcentaje
+nota_obtenida
+fecha
+
+Ejemplo:
+
+El estudiante obtuvo 4.3 en el Parcial 1 de Bases de Datos.
+
+5. MATRÍCULA
+Es un registro administrativo del semestre que cursa el estudiante.
+Atributos:
+
+id_matrícula 
+semestre
+fecha_matricula
+estado (activo, suspendido)
+
+Ejemplo:
+
+Juan realizó matrícula para el semestre 2025-1 el día 15/01/2025.
+
+6. FACULTAD
+Organiza los programas académicos dentro de unidades mayores.
+Atributos:
+
+id_facultad 
+nombre
+decano
+
+Ejemplo:
+
+El programa Ingeniería de Sistemas pertenece a la Facultad de Ingeniería.
+
+Relación:
+
+FACULTAD tiene PROGRAMAS
+
+7. GRUPO O SECCIÓN
+Permite dividir una asignatura en varios grupos con distinto docente, aula o horario.
+Atributos:
+
+id_grupo 
+número_grupo (ej. 01, 02)
+cupo_maximo
+
+Ejemplo:
+
+La asignatura Cálculo I tiene grupos 01 y 02, cada uno con diferente docente.
+
+Relaciones:
+
+GRUPO pertenece a ASIGNATURA
+ESTUDIANTE se inscribe en GRUPO
+DOCENTE dicta GRUPO
+
+
+8. PERIODO ACADÉMICO
+Organiza actividades dentro de semestres o periodos específicos.
+Atributos:
+
+id_periodo
+nombre (2025-1, 2025-2)
+fecha_inicio, fecha_fin
+
+Ejemplo:
+
+El periodo 2025-2 va del 15 de julio al 30 de noviembre.
+
+
+9. PAGO / FINANCIACIÓN
+En sistemas reales, se controla la parte administrativa del estudiante.
+Atributos:
+
+id_pago 
+valor
+fecha
+método_pago
