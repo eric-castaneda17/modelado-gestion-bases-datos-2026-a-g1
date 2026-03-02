@@ -1,0 +1,78 @@
+Datos que manejaría el sistema y cómo se transforman en información útil:
+El sistema académico debe gestionar diversos datos para permitir el control de estudiantes, docentes, cursos y matrículas. Los datos principales son:
+
+id_persona: Identificador único que permite diferenciar cada individuo dentro del sistema y evita que se dupliquen los registros.
+nombre y apellido: Datos que identifican a las personas y permiten generar reportes personalizados.
+correo: Medio de contacto institucional para notificaciones y comunicaciones.
+código_estudiante: Identificador académico necesario para trámites internos, matrículas y control académico.
+programa_academico: Permite clasificar a los estudiantes según su carrera.
+id_curso: Identificador de cada curso ofrecido por la institución que permite organizar la oferta académica, consultar materias activas por semestre y generar reportes de inscripción por curso.
+créditos y semestre del curso: Datos necesarios para estructurar el plan académico y controlar el avance del estudiante.
+id_matricula: Registro único de la inscripción de un estudiante en un curso durante un periodo. Permite consultar historial académico, generar reportes por periodo.
+id_docente: Identificador del docente responsable del curso que permite conocer la carga académica por docente, distribuir grupos y asignar horarios. 
+
+A partir de estos datos el sistema genera información significativa para la institución como reportes de carga docente, estudiantes inscritos por curso, historial de matrículas, control del avance académico, demanda de materias por periodo y estadísticas de rendimiento. Esta información permite tomar decisiones sobre apertura de grupos, asignación de docentes, planeación académica y seguimiento del avance de los estudiantes.
+
+Modelo Entidad–Relación 
+Se eligieron las entidades Persona, Estudiante, Docente, Curso y Matrícula porque representan los objetos reales del proceso académico. Los atributos asignados corresponden solamente a información necesaria para la identificación y gestión básica de cada entidad. La entidad Matrícula permite modelar la inscripción de estudiantes a cursos en un periodo específico.”
+El modelo incluye las entidades: Persona, Estudiante, Docente, Curso y Matrícula.
+El diseño aplica generalización para evitar duplicidad de datos entre roles, y utiliza la entidad Matrícula para representar la inscripción de cursos por periodo.
+
+1. PERSONA (Supertipo)
+
+id_persona 
+nombre
+apellido
+correo
+telefono
+fecha_nacimiento
+
+
+2. ESTUDIANTE (Subtipo de Persona)
+
+id_persona 
+codigo_estudiante
+programa_academico
+semestre
+
+
+3. DOCENTE (Subtipo de Persona)
+
+id_persona 
+codigo_docente
+especialidad
+
+
+4. CURSO
+
+id_curso 
+nombre
+creditos
+semestre
+id_docente 
+
+5. MATRICULA
+
+id_matricula 
+fecha_matricula
+periodo_academico
+id_estudiante 
+id_curso 
+
+PERSONA → ESTUDIANTE (Especialización 1:1)
+Esta relación existe porque todo estudiante primero es una persona y usa sus mismos datos básicos. Se maneja como una especialización para no repetir información en varias tablas. Es 1:1 porque un estudiante solo puede tener una persona asociada. Además, es opcional porque no todas las personas del sistema serán estudiantes.
+
+PERSONA → DOCENTE (Especialización 1:1)
+La relación se usa porque un docente también es una persona y comparte datos como nombre, correo y teléfono. Se hace 1:1 para mantener un solo registro personal por docente. También es opcional, ya que no todas las personas registradas tendrán el rol de docente. Esto ayuda a evitar datos duplicados y mantiene el sistema organizado.
+
+DOCENTE → CURSO (1:N)
+Un docente puede dictar varios cursos, por eso la relación es de 1 a muchos. Cada curso solo puede tener un docente responsable, lo que evita confusiones. Esta relación permite saber qué cursos dicta cada docente y ayuda a organizar la carga académica. La FK en curso garantiza que siempre esté asociado al docente correcto.
+
+ESTUDIANTE → MATRÍCULA (1:N)
+Un estudiante puede tener varias matrículas en diferentes periodos, por eso esta relación es 1 a muchos. Cada matrícula debe tener un estudiante asociado para mantener orden en el historial académico. Esto permite conocer qué cursos ha tomado un estudiante y en qué fechas. La FK asegura que cada matrícula siempre esté ligada al estudiante correcto.
+
+CURSO → MATRÍCULA (1:N)
+Un curso puede ser matriculado por muchos estudiantes, lo que justifica la relación 1:N. Cada matrícula está asociada a un solo curso para evitar errores. Esto ayuda a medir cuántos estudiantes tiene un curso y analizar su demanda. La FK garantiza que cada matrícula esté conectada al curso correspondiente.
+
+Justificación de la generalización Persona → Estudiante / Docente
+Se usa una generalización porque tanto Estudiante como Docente comparten los mismos datos básicos, como nombre, apellido, teléfono y correo. La especialización es Total porque toda persona del sistema debe tener uno de estos dos roles. Es Disjoint porque una persona no puede ser estudiante y docente al mismo tiempo en este modelo. Esto ayuda a organizar mejor la información y evita repetir datos en varias tablas.
